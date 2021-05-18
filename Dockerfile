@@ -16,6 +16,8 @@ RUN yum update -y && \
 
 ARG PYTHON_VERSION=3.8.8
 WORKDIR /build
+# Ensure that python means python3 even in non-interactive sessions through
+# aliases and symbolic links
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
@@ -29,6 +31,8 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     make -j"$(($(nproc) - 1))" && \
     make install && \
     printf "\nalias python='python3'\n" >> ~/.bashrc && \
+    printf "alias python2='"$(command -v python2.7)"'\n" >> ~/.bashrc && \
+    ln -s -f "$(command -v python3)" "$(command -v python)" && \
     cd / && \
     rm -rf /build
 WORKDIR /
