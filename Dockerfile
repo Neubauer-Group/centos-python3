@@ -32,7 +32,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     make install && \
     printf "\nalias python='python3'\n" >> ~/.bashrc && \
     printf "alias python2='"$(command -v python2.7)"'\n" >> ~/.bashrc && \
-    ln -s -f "$(command -v python3)" "$(command -v python)" && \
+    ln --symbolic --force "$(command -v python3)" "$(command -v python)" && \
     cd / && \
     rm -rf /build
 WORKDIR /
