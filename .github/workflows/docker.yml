@@ -73,7 +73,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: pyhf/Dockerfile
+          file: Dockerfile
           tags: ${{ steps.prep.outputs.tags }}
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
@@ -88,11 +88,11 @@ jobs:
       - name: List built images
         run: docker images
 
-      - name: Test pyhf installed
+      - name: Check CPython version
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          /bin/bash -c "python3 -m pip list && echo '' && pyhf --version"
+          /bin/bash -c "python --versin --version && echo '' && python3 -m pip list"
 
       - name: Build and publish to registry
         # every PR will trigger a push event on main, so check the push event is actually coming from main
@@ -101,7 +101,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: pyhf/Dockerfile
+          file: Dockerfile
           tags: neubauergroup/centos-python3:latest,neubauergroup/centos-python3:3.8.8,ghcr.io/${{steps.prep.outputs.repo_name_lowercase}}:latest,ghcr.io/${{steps.prep.outputs.repo_name_lowercase}}:3.8.8
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
@@ -115,7 +115,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: pyhf/Dockerfile
+          file: Dockerfile
           tags: ${{ steps.prep.outputs.tags }}
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
