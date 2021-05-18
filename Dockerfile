@@ -1,5 +1,7 @@
 FROM centos:7
 
+SHELL [ "/bin/bash", "-c" ]
+
 RUN yum update -y && \
     yum install -y \
         gcc \
