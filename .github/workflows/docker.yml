@@ -94,7 +94,7 @@ jobs:
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          /bin/bash -c "python --versin --version && echo '' && python3 -m pip list"
+          /bin/bash -c "python --version --version && echo '' && python3 -m pip list"
 
       - name: Build and publish to registry
         # every PR will trigger a push event on main, so check the push event is actually coming from main
