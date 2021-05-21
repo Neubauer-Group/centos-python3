@@ -49,7 +49,11 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     grep --recursive '#!/usr/bin/python' /usr/bin/ \
         | grep --invert-match 'python3\|python2.7' \
         | sed 's/:.*$//' \
-        | xargs sed --in-place 's|#!/usr/bin/python|#!/usr/libexec/platform-python|g'
+        | xargs sed --in-place 's|#!/usr/bin/python|#!/usr/libexec/platform-python|g' && \
+    grep --recursive '#!' /usr/libexec/ \
+        | grep "python" \
+        | sed 's/:.*$//' \
+        | xargs sed --in-place 's|/usr/bin/python|/usr/libexec/platform-python|g'
 WORKDIR /
 
 ENV LC_ALL=en_US.UTF-8

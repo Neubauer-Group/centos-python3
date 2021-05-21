@@ -100,7 +100,7 @@ jobs:
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          'yum --version'
+          'yum --version && yum update -y'
 
       - name: Build and publish to registry
         # every PR will trigger a push event on main, so check the push event is actually coming from main
