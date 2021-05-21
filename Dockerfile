@@ -23,6 +23,11 @@ WORKDIR /build
 # done to ensure that non-interatice sessions don't cause unintended bugs.
 # As soon as NCSA Blue Waters is EOL and no longer needed, switch over to
 # centos:8 immediatley.
+# The grep bit at the end:
+# * Finds all matches under /usr/bin that contain #!/usr/bin/python
+# * Ignores all matches with python3 or python2.7
+# * Strips out just the filename
+# * Passes those filenames to sed to replace the shebang with #!/usr/libexec/platform-python
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
