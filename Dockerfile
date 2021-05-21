@@ -18,6 +18,11 @@ ARG PYTHON_VERSION=3.8.8
 WORKDIR /build
 # Ensure that python means python3 even in non-interactive sessions through
 # aliases and symbolic links
+# N.B.:
+# This is a bad thing to do in general and this is ONLY being done to ensure
+# that non-interatice sessions don't cause unintended bugs.
+# As soon as NCSA Blue Waters is EOL and no longer needed, switch over to
+# centos:8 immediatley.
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
