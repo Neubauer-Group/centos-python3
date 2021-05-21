@@ -94,7 +94,13 @@ jobs:
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          "python --version --version && echo '' && python -m pip list"
+          'python --version --version && echo "" && python -m pip list'
+
+      - name: Check yum still works after shebang manipulation
+        run: >-
+          docker run --rm
+          neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
+          'yum --version --version'
 
       - name: Build and publish to registry
         # every PR will trigger a push event on main, so check the push event is actually coming from main
