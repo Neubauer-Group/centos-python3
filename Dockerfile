@@ -9,6 +9,7 @@ RUN yum update -y && \
         bzip2-devel \
         libffi-devel \
         lzma-devel \
+        python3-devel \
         curl \
         tar \
         make && \
