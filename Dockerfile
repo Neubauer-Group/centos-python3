@@ -59,7 +59,7 @@ WORKDIR /
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 # Make /usr/include/python3.8/Python.h findable to gcc
-# c.f. http://gcc.gnu.org/onlinedocs/gcc-4.8.1/gcc/Environment-Variables.html#Environment-Variables
+# c.f. http://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Environment-Variables.html#Environment-Variables
 ENV C_INCLUDE_PATH=/usr/include/python3.8
 ENV CPLUS_INCLUDE_PATH=/usr/include/python3.8
 
