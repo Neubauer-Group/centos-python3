@@ -102,6 +102,14 @@ jobs:
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
           'yum --version && yum update -y'
 
+      - name: Check gcc finds /usr/include/python3.8/Python.h
+        run: >-
+          docker run --rm
+          -v $PWD:$PWD
+          -w $PWD
+          neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
+          'gcc tests/test-gcc-include.c -o test-gcc-include && ./test-gcc-include'
+
       - name: Build and publish to registry
         # every PR will trigger a push event on main, so check the push event is actually coming from main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'Neubauer-Group/centos-python3'
