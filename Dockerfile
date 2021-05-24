@@ -14,7 +14,7 @@ RUN yum update -y && \
         make && \
     yum clean all
 
-ARG PYTHON_VERSION=3.8.8
+ARG PYTHON_VERSION=3.8.10
 WORKDIR /build
 # Ensure that python means python3 even in non-interactive sessions through
 # aliases and symbolic links
