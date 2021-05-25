@@ -64,7 +64,9 @@ ENV C_INCLUDE_PATH=/usr/include/python3.8
 ENV CPLUS_INCLUDE_PATH=/usr/include/python3.8
 # Match official Python docker image environment variables
 ENV PYTHON_VERSION="${PYTHON_VERSION}"
-ENV PYTHON_PIP_VERSION="$(python -c 'import pip; print(pip.__version__)')"
+# pip version needs to be determined empirically for each CPython
+# release as ENV can't be set from RUN output
+ENV PYTHON_PIP_VERSION=21.1.1
 
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 CMD ["/bin/bash"]
