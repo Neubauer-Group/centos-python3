@@ -9,6 +9,7 @@ RUN yum update -y && \
         bzip2-devel \
         libffi-devel \
         lzma-devel \
+        readline-devel \
         curl \
         tar \
         make && \
