@@ -62,6 +62,11 @@ ENV LANG=en_US.UTF-8
 # c.f. http://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Environment-Variables.html#Environment-Variables
 ENV C_INCLUDE_PATH=/usr/include/python3.8
 ENV CPLUS_INCLUDE_PATH=/usr/include/python3.8
+# Match official Python docker image environment variables
+ENV PYTHON_VERSION="${PYTHON_VERSION}"
+# pip version needs to be determined empirically for each CPython
+# release as ENV can't be set from RUN output
+ENV PYTHON_PIP_VERSION=21.1.1
 
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 CMD ["/bin/bash"]
