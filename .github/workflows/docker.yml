@@ -109,7 +109,7 @@ jobs:
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
           'yum --version && yum update -y'
 
-      - name: Check gcc finds /usr/include/python3.8/Python.h
+      - name: Check gcc finds /usr/local/include/python3.8/Python.h
         run: >-
           docker run --rm
           -v $PWD:$PWD

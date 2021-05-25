@@ -32,8 +32,8 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
     ./configure --help && \
-    ./configure --prefix=/usr \
-        --exec_prefix=/usr \
+    ./configure --prefix=/usr/local \
+        --exec_prefix=/usr/local \
         --with-ensurepip \
         --enable-optimizations \
         --with-lto \
@@ -44,7 +44,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     printf "# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
     printf "# For Python 2.7 in shebangs use '#!/usr/libexec/platform-python'\n" >> ~/.bashrc && \
     ln --symbolic --force "$(command -v python3)" "$(command -v python)" && \
-    ln --symbolic "$(command -v pip3)" /usr/bin/pip && \
+    ln --symbolic "$(command -v pip3)" /usr/local/bin/pip && \
     cd / && \
     rm -rf /build && \
     grep --recursive '#!/usr/bin/python' /usr/bin/ \
@@ -59,10 +59,10 @@ WORKDIR /
 
 ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
-# Make /usr/include/python3.8/Python.h findable by gcc
+# Make /usr/local/include/python3.8/Python.h findable by gcc
 # c.f. http://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Environment-Variables.html#Environment-Variables
-ENV C_INCLUDE_PATH=/usr/include/python3.8
-ENV CPLUS_INCLUDE_PATH=/usr/include/python3.8
+ENV C_INCLUDE_PATH=/usr/local/include/python3.8
+ENV CPLUS_INCLUDE_PATH=/usr/local/include/python3.8
 # Match official Python docker image environment variables
 ENV PYTHON_VERSION="${PYTHON_VERSION}"
 # pip version needs to be determined empirically for each CPython
