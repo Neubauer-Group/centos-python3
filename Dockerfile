@@ -13,6 +13,8 @@ RUN yum update -y && \
         zlib-devel \
         xz-devel \
         readline-devel \
+        sqlite \
+        sqlite-devel \
         curl \
         tar \
         make && \
