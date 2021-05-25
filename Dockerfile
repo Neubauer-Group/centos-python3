@@ -44,6 +44,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     printf "# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
     printf "# For Python 2.7 in shebangs use '#!/usr/libexec/platform-python'\n" >> ~/.bashrc && \
     ln --symbolic --force "$(command -v python3)" "$(command -v python)" && \
+    ln --symbolic --force "$(command -v python3)" "$(command -v python)" && \
     cd / && \
     rm -rf /build && \
     grep --recursive '#!/usr/bin/python' /usr/bin/ \
