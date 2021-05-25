@@ -91,6 +91,12 @@ jobs:
       - name: List built images
         run: docker images
 
+      - name: Check environment variables
+        run: >-
+          docker run --rm
+          neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
+          'printenv'
+
       - name: Check CPython version
         run: >-
           docker run --rm
