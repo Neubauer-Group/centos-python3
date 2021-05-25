@@ -6,9 +6,12 @@ RUN yum update -y && \
     yum install -y \
         gcc \
         openssl-devel \
+        bzip2 \
         bzip2-devel \
         libffi-devel \
         lzma-devel \
+        zlib-devel \
+        xz-devel \
         readline-devel \
         curl \
         tar \
