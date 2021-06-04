@@ -41,6 +41,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     ./configure --prefix=/usr/local \
         --exec_prefix=/usr/local \
         --with-ensurepip \
+        --enable-shared \
         --enable-optimizations \
         --with-lto \
         --enable-ipv6 && \
