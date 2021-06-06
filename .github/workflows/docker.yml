@@ -101,7 +101,11 @@ jobs:
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          'python --version --version && echo "" && python -m pip list'
+          'command -v python && \
+           echo "" && \
+           python --version --version && \
+           echo "" && \
+           python -m pip list'
 
       - name: Check yum still works after shebang manipulation
         run: >-
