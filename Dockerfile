@@ -49,8 +49,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
         --enable-ipv6 && \
     make -j"$(($(nproc) - 1))" && \
     make install && \
-    printf '\nexport PATH=/usr/local/venv/bin:"${PATH}"\n' >> ~/.bashrc && \
-    printf "# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
+    printf "\n# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
     printf "# For Python 2.7 in shebangs use '#!/usr/libexec/platform-python'\n" >> ~/.bashrc && \
     LD_LIBRARY_PATH=/usr/local/lib python3 -m venv /usr/local/venv && \
     cd / && \
