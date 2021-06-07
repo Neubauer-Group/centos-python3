@@ -51,6 +51,8 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     make install && \
     printf "\n# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
     printf "# For Python 2.7 in shebangs use '#!/usr/libexec/platform-python'\n" >> ~/.bashrc && \
+    ln --symbolic "$(command -v python3)" /usr/local/bin/python && \
+    ln --symbolic "$(command -v pip3)" /usr/local/bin/pip && \
     LD_LIBRARY_PATH=/usr/local/lib python3 -m venv /usr/local/venv && \
     cd / && \
     rm -rf /build && \
