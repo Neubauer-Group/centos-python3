@@ -56,7 +56,6 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     ln --symbolic "$(command -v python3)" /usr/local/bin/python && \
     ln --symbolic "$(command -v pip3)" /usr/local/bin/pip && \
     ln --symbolic --force "$(command -v python3)" /bin/python && \
-    ln --symbolic --force "$(command -v python3)" /usr/bin/python && \
     cd / && \
     rm -rf /build && \
     grep --recursive '#!/usr/bin/python' /usr/bin/ \
