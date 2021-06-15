@@ -41,6 +41,7 @@ ENV PATH=/usr/local/venv/bin:"${PATH}"
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
+    source scl_source enable devtoolset-8 && \
     ./configure --help && \
     ./configure --prefix=/usr/local \
         --exec_prefix=/usr/local \
