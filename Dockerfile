@@ -17,7 +17,9 @@ RUN yum update -y && \
         sqlite-devel \
         curl \
         tar \
-        make && \
+        make \
+        centos-release-scl && \
+    yum install -y devtoolset-8 && \
     yum clean all
 
 ARG PYTHON_VERSION=3.8.10
@@ -39,6 +41,7 @@ ENV PATH=/usr/local/venv/bin:"${PATH}"
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
+    source scl_source enable devtoolset-8 && \
     ./configure --help && \
     ./configure --prefix=/usr/local \
         --exec_prefix=/usr/local \
@@ -51,6 +54,7 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     make install && \
     printf "\n# For Python 2.7 use 'python2'\n" >> ~/.bashrc && \
     printf "# For Python 2.7 in shebangs use '#!/usr/libexec/platform-python'\n" >> ~/.bashrc && \
+    printf "\nsource scl_source enable devtoolset-8\n" >> ${HOME}/.bash_profile && \
     LD_LIBRARY_PATH=/usr/local/lib python3 -m venv /usr/local/venv && \
     . /usr/local/venv/bin/activate && \
     ln --symbolic "$(command -v python3)" /usr/local/bin/python && \

@@ -119,7 +119,7 @@ jobs:
           -v $PWD:$PWD
           -w $PWD
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
-          'gcc tests/test-gcc-include.c -o test-gcc-include && ./test-gcc-include'
+          'gcc tests/test-gcc-include.c -o test-gcc-include && ./test-gcc-include && gcc --version'
 
       - name: Check for shared python library (.so)
         run: >-
