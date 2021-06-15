@@ -17,7 +17,9 @@ RUN yum update -y && \
         sqlite-devel \
         curl \
         tar \
-        make && \
+        make \
+        centos-release-scl && \
+    yum install -y devtoolset-8 && \
     yum clean all
 
 ARG PYTHON_VERSION=3.8.10
