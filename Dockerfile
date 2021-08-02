@@ -26,18 +26,8 @@ ARG PYTHON_VERSION=3.8.10
 WORKDIR /build
 # Set PATH to pickup virtualenv by default
 ENV PATH=/usr/local/venv/bin:"${PATH}"
-# Ensure that python means python3 even in non-interactive sessions through
-# aliases and symbolic links
-# N.B.:
-# shebang manipulation is a bad thing to do in general and this is ONLY being
-# done to ensure that non-interatice sessions don't cause unintended bugs.
 # As soon as NCSA Blue Waters is EOL and no longer needed, switch over to
 # centos:8 immediatley.
-# The grep bit at the end:
-# * Finds all matches under /usr/bin that contain #!/usr/bin/python
-# * Ignores all matches with python3 or python2.7
-# * Strips out just the filename
-# * Passes those filenames to sed to replace the shebang with #!/usr/libexec/platform-python
 RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" && \
     tar -xzf "Python-${PYTHON_VERSION}.tgz" && \
     cd "Python-${PYTHON_VERSION}" && \
@@ -57,18 +47,8 @@ RUN curl -sLO "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTH
     printf "\nsource scl_source enable devtoolset-8\n" >> ${HOME}/.bash_profile && \
     LD_LIBRARY_PATH=/usr/local/lib python3 -m venv /usr/local/venv && \
     . /usr/local/venv/bin/activate && \
-    ln --symbolic "$(command -v python3)" /usr/local/bin/python && \
-    ln --symbolic "$(command -v pip3)" /usr/local/bin/pip && \
     cd / && \
-    rm -rf /build && \
-    grep --recursive '#!/usr/bin/python' /usr/bin/ \
-        | grep --invert-match 'python3\|python2.7' \
-        | sed 's/:.*$//' \
-        | xargs sed --in-place 's|#!/usr/bin/python|#!/usr/libexec/platform-python|g' && \
-    grep --recursive '#!' /usr/libexec/ \
-        | grep "python" \
-        | sed 's/:.*$//' \
-        | xargs sed --in-place 's|/usr/bin/python|/usr/libexec/platform-python|g'
+    rm -rf /build
 WORKDIR /
 
 ENV LC_ALL=en_US.UTF-8
