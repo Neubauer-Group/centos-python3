@@ -30,7 +30,7 @@ jobs:
         run: |
           DOCKER_IMAGE=neubauergroup/centos-python3
           VERSION=latest
-          PYTHON_VERSION=3.8.10
+          PYTHON_VERSION=3.8.11
           REPO_NAME=${{github.repository}}
           REPO_NAME_LOWERCASE="${REPO_NAME,,}"
           if [[ $GITHUB_REF == refs/tags/* ]]; then

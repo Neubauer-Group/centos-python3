@@ -22,7 +22,7 @@ RUN yum update -y && \
     yum install -y devtoolset-8 && \
     yum clean all
 
-ARG PYTHON_VERSION=3.8.10
+ARG PYTHON_VERSION=3.8.11
 WORKDIR /build
 # Set PATH to pickup virtualenv by default
 ENV PATH=/usr/local/venv/bin:"${PATH}"
