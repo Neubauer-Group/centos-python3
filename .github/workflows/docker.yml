@@ -107,7 +107,7 @@ jobs:
            echo "" && \
            python -m pip list'
 
-      - name: Check yum still works after shebang manipulation
+      - name: Check yum works
         run: >-
           docker run --rm
           neubauergroup/centos-python3:sha-${GITHUB_SHA::8}
