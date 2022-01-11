@@ -55,10 +55,10 @@ ENV LC_ALL=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 # As --enable-shared is used put .so files in LD_LIBRARY_PATH
 ENV LD_LIBRARY_PATH=/usr/local/lib:"${LD_LIBRARY_PATH}"
-# Make /usr/local/include/python3.8/Python.h findable by gcc
+# Make /usr/local/include/python3.9/Python.h findable by gcc
 # c.f. http://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Environment-Variables.html#Environment-Variables
-ENV C_INCLUDE_PATH=/usr/local/include/python3.8
-ENV CPLUS_INCLUDE_PATH=/usr/local/include/python3.8
+ENV C_INCLUDE_PATH=/usr/local/include/python3.9
+ENV CPLUS_INCLUDE_PATH=/usr/local/include/python3.9
 # Match official Python docker image environment variables
 ENV PYTHON_VERSION="${PYTHON_VERSION}"
 # pip version needs to be determined empirically for each CPython
