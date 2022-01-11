@@ -63,7 +63,7 @@ ENV CPLUS_INCLUDE_PATH=/usr/local/include/python3.9
 ENV PYTHON_VERSION="${PYTHON_VERSION}"
 # pip version needs to be determined empirically for each CPython
 # release as ENV can't be set from RUN output
-ENV PYTHON_PIP_VERSION=21.1.1
+ENV PYTHON_PIP_VERSION=21.2.4
 
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
 CMD ["/bin/bash"]
