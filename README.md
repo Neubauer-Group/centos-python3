@@ -1,4 +1,4 @@
-# CentOS 7 image with CPython 3.8 built from source
+# CentOS 7 image with CPython 3.9 built from source
 
 Docker image for CentOS 7 with modern CPython 3
 
